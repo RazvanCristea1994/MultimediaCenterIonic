@@ -1,0 +1,7 @@
+<app-navbar [pageName]="'Order'"></app-navbar>
+<ion-content>
+    <ion-item>
+        <ion-label>Date</ion-label>
+        <ion-label>{{order?.orderDateTime | date}}</ion-label>
+    </ion-item>
+</ion-content>

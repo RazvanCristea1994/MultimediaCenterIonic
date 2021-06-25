@@ -1,0 +1,7 @@
+{
+  "name": "MultimediaCenterIonic",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

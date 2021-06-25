@@ -1,0 +1,59 @@
+<app-navbar [pageName]="'Movie Details'"></app-navbar>
+<ion-content>
+    <div>
+        <form>
+            <ion-item>
+                <ion-label>Title</ion-label>
+                <ion-input type="text" [(ngModel)]="movie.title" name="title"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label>Description</ion-label>
+                <ion-input type="text" [(ngModel)]="movie.description" name="description"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label>Duration</ion-label>
+                <ion-input type="number" [(ngModel)]="movie.duration" name="duration"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label>Year of release</ion-label>
+                <ion-input type="number" [(ngModel)]="movie.yearOfRelease" name="yearOfRelease"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label>Director</ion-label>
+                <ion-input type="text" [(ngModel)]="movie.director" name="director"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label>Added date</ion-label>
+                <ion-input type="number" [(ngModel)]="movie.date" name="date"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label>Watched</ion-label>
+                <ion-checkbox [(ngModel)]="movie.watched" name="watched"></ion-checkbox>
+              </ion-item>
+
+            <ion-item>
+                <ion-label>Rating</ion-label>
+                <ion-input type="number" [(ngModel)]="movie.rating" name="rating"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label>Genre</ion-label>
+                <ion-select interface="popover" [(ngModel)]="movie.movieGenre" name="movieGenre">
+                    <ion-select-option *ngFor="let genre of MOVIE_GENRES" [value]="genre">
+                        {{ genre }}
+                    </ion-select-option>
+                </ion-select>
+            </ion-item>
+        </form>
+    </div>
+</ion-content>
+<ion-footer>
+    <ion-button expand="block" (click)="saveMovie()">Submit</ion-button>
+    <ion-button expand="block" color="secondary" (click)="goToMoviesList()">Back</ion-button>
+</ion-footer>
