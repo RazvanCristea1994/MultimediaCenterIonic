@@ -1,3 +1,5 @@
+import { Review } from "./review.model";
+
 export class Movie {
     id?: number;
     title?: string = '';
@@ -8,6 +10,7 @@ export class Movie {
     watchetd?: boolean;
     rating?: number;
     movieGenre?: MovieGenre;
+    userReviews?: Review[];
 }
 
 export enum MovieGenre {

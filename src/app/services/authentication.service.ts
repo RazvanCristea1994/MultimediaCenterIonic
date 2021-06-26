@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { Observable, of } from "rxjs";
 import { AUTH_TOKEN_LOCAL_STORAGE_KEY } from "../models/authentication.model";
 
 @Injectable()
@@ -14,5 +15,9 @@ export class AuthenticationService {
 
     removeToken() {
         localStorage.removeItem(AUTH_TOKEN_LOCAL_STORAGE_KEY);
+    }
+
+    isAuthenticated(): Observable<boolean> {
+        return of(this.getToken() != null);
     }
 }

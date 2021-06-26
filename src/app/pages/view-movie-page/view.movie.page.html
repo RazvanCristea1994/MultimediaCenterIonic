@@ -1,0 +1,46 @@
+<app-navbar [pageName]="'Movie Details'"></app-navbar>
+<ion-content>
+  <div>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>{{ movie.title }}</ion-card-title>
+        <ion-card-subtitle>Director: {{ movie.director}} </ion-card-subtitle>
+        <ion-card-subtitle *ngIf="movie.watched">Rating: {{ movie.rating }} </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        {{ movie.description }}
+      </ion-card-content>
+    </ion-card>
+
+    <div>
+      <hr>
+      <h5>Reviews</h5>
+      <ion-list>
+        <ion-item *ngFor="let review of reviews; let i = index">
+          <ion-label> 
+            {{ i + 1 }}
+          </ion-label>
+          <ion-label></ion-label>
+          <ion-label>{{ review.content }}</ion-label>
+          <ion-icon *ngIf="isAuthenticated | async" name="close-outline" (click)="deleteReview(review.id)"></ion-icon>
+        </ion-item>
+      </ion-list>
+      <hr>
+      <h5>Add a review:</h5>
+      <form>
+        <ion-item>
+          <ion-label>Text:</ion-label>
+          <ion-textarea type="text" [(ngModel)]="newReview.content" name="text"></ion-textarea>
+        </ion-item>
+        <ion-item>
+            <ion-label>Rating:</ion-label>
+            <ion-input type="number" [(ngModel)]="newReview.stars" name="stars"></ion-input>
+        </ion-item>
+        <ion-button expand="block" (click)="saveReview()">Save</ion-button>
+      </form>
+    </div>
+  </div>
+</ion-content>
+<ion-footer>
+  <ion-button expand="block" color="secondary" (click)="goToMoviesList()">Back to movies</ion-button>
+</ion-footer>

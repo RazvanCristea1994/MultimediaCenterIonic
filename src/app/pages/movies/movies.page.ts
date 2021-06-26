@@ -1,8 +1,10 @@
-import { Component, OnInit, ViewEncapsulation } from "@angular/core";
+import { ChangeDetectorRef, Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { Movie, MovieGenre } from "../models/movie.model";
-import { ApiService } from "../services/api.service";
-import { DataService } from "../services/data.service";
+import { Observable } from "rxjs";
+import { AuthenticationService } from "src/app/services/authentication.service";
+import { Movie, MovieGenre } from "../../models/movie.model";
+import { ApiService } from "../../services/api.service";
+import { DataService } from "../../services/data.service";
 
 @Component({
     selector: 'app-movies',
@@ -14,16 +16,27 @@ import { DataService } from "../services/data.service";
 export class MoviesPage {
 
   movies: Movie[];
+  isAuthenticated: Observable<boolean>;
 
   constructor(
     private apiService: ApiService, 
     private router: Router,
     private route: ActivatedRoute,
-    private dataService: DataService
+    private dataService: DataService,
+    private authenticationService: AuthenticationService,
+    private cd: ChangeDetectorRef,
     ) {}
 
   ionViewWillEnter() {
+    this.dataService.movie = null;
+    this.isAuthenticated = this.authenticationService.isAuthenticated();
+    this.cd.detectChanges();
     this.loadMovies();
+  }
+
+  viewMovie(movie: Movie) {
+    this.dataService.movie = movie;
+    this.router.navigateByUrl('movies/view/' + movie.id);
   }
 
   goToAddMovie() {

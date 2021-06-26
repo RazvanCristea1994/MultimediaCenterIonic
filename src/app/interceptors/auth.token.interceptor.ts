@@ -7,6 +7,7 @@ import {
 } from '@angular/common/http';
 import { AuthenticationService } from '../services/authentication.service';
 import { Observable } from 'rxjs';
+
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 
@@ -20,7 +21,7 @@ export class TokenInterceptor implements HttpInterceptor {
             setHeaders: {
               Authorization: `Bearer ${this.authenticationService.getToken()}`
             }
-          });
+        });
     }
 
     return next.handle(request);
